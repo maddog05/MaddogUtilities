@@ -5,7 +5,6 @@ Libray that contain utils and callbacks that I use in my projects
 build.gradle PROJECT
 ```Java
 repositories {
-        jcenter()
         maven { url 'https://jitpack.io' }
     }
 ```
