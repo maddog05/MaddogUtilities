@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">SampleUtils</string>
+    <string name="app_name">Maddog Utils</string>
+    <string name="error_need_permissions">Need permissions</string>
+    <string name="dialog_encoding_image">Encoding image…</string>
 </resources>
