@@ -10,5 +10,5 @@ repositories {
 ```
 build.gradle MODULE
 ```Java
-compile 'com.github.maddog05:MaddogUtilities:0.3'
+compile 'com.github.maddog05:MaddogUtilities:0.4'
 ```
