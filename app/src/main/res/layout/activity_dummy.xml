@@ -16,7 +16,14 @@
             android:id="@+id/btn_dummy_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="PHOTOS" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_dummy_numbers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NUMBERS" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.maddog05.maddogutilities.android.Permissions;
+import com.maddog05.sampleutils.activity.NumbersActivity;
 import com.maddog05.sampleutils.activity.PhotoActivity;
 
 public class DummyActivity extends AppCompatActivity {
@@ -28,6 +29,16 @@ public class DummyActivity extends AppCompatActivity {
                 openDemoPhoto();
             }
         });
+        findViewById(R.id.btn_dummy_numbers).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDemoNumbers();
+            }
+        });
+    }
+
+    private void openDemoNumbers() {
+        startActivity(new Intent(DummyActivity.this, NumbersActivity.class));
     }
 
     @Override

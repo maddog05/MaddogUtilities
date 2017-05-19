@@ -11,7 +11,7 @@ import android.net.NetworkInfo;
 
 public class Checkers {
     /**
-     * Check if an application is installed cheching packageName.
+     * Check if an application is installed checking its packageName.
      *
      * @param context, Application context.
      * @param packageName, Package name to find.
