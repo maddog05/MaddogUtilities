@@ -9,15 +9,14 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 
 import com.maddog05.maddogutilities.image.Images;
-import com.maddog05.maddogutilities.logger.Logger;
+import com.maddog05.maddogutilities.logger.Logger2;
 import com.maddog05.sampleutils.R;
 
-public class PhotoActivity extends AppCompatActivity implements Logger {
+public class PhotoActivity extends AppCompatActivity {
 
     public static final int RESULT_LOAD_IMAGE = 102;
     public static final int RESULT_TAKE_PICTURE = 103;
@@ -57,7 +56,7 @@ public class PhotoActivity extends AppCompatActivity implements Logger {
                     @Override
                     protected void onPostExecute(String encoded64) {
                         _dialog.dismiss();
-                        logI("Encoded complete");
+                        Logger2.get().d("#Maddog", "encodingComplete");
                     }
                 }.execute();
             }
@@ -79,6 +78,8 @@ public class PhotoActivity extends AppCompatActivity implements Logger {
                         pathPhoto = pair.path;
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pair.uri);
                         startActivityForResult(cameraIntent, RESULT_TAKE_PICTURE);
+                    } else {
+                        Logger2.get().e("#Andree", "error in create path for image");
                     }
                 }
             }
@@ -111,33 +112,4 @@ public class PhotoActivity extends AppCompatActivity implements Logger {
         photoIv.setImageBitmap(bitmap);
     }
 
-    @Override
-    public String logTag() {
-        return "PhotoActivity";
-    }
-
-    @Override
-    public void logV(String message) {
-
-    }
-
-    @Override
-    public void logD(String message) {
-
-    }
-
-    @Override
-    public void logI(String message) {
-        Log.i(logTag(), message);
-    }
-
-    @Override
-    public void logW(String message) {
-
-    }
-
-    @Override
-    public void logE(String message) {
-
-    }
 }

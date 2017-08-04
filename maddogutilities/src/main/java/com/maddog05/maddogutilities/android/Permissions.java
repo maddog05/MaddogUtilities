@@ -7,6 +7,11 @@ import android.content.pm.PackageManager;
  */
 
 public class Permissions {
+    /**
+     * Check if all requested permissions are granted
+     * @param grantResults result from onRequestPermissionResult
+     * @return true if permissions are granted, false otherwise
+     */
     public static boolean isPermissionGranted(int[] grantResults) {
         if (grantResults.length < 1)
             return false;
