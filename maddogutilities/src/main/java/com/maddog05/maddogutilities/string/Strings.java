@@ -80,10 +80,25 @@ public class Strings {
     }
 
     /**
+     * Concat two strings, first with normal and second with bold
+     *
+     * @param normalText normal
+     * @param boldText   bold
+     * @return CharSequence ready to use in setText(result)
+     */
+    public static CharSequence normalConcatBoldText(String normalText, String boldText) {
+        SpannableString txtSpannable = new SpannableString(boldText);
+        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+        txtSpannable.setSpan(boldSpan, 0, boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return TextUtils.concat(normalText, boldText);
+    }
+
+    /**
      * Copy simple text to clipboard
-     * @param context access to context
+     *
+     * @param context     access to context
      * @param labelToUser message to notify clipboard copied
-     * @param textToCopy text to clipboard
+     * @param textToCopy  text to clipboard
      */
     public static void copyToCipboard(Context context, String labelToUser, String textToCopy) {
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
