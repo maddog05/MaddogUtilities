@@ -90,7 +90,7 @@ public class Strings {
         SpannableString txtSpannable = new SpannableString(boldText);
         StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
         txtSpannable.setSpan(boldSpan, 0, boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return TextUtils.concat(normalText, boldText);
+        return TextUtils.concat(normalText, txtSpannable);
     }
 
     /**
