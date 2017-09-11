@@ -8,16 +8,14 @@ import android.os.Build;
 
 public class AndroidVersions {
     /**
-     *
-     * @return true if is Lollipop, false otherwise
+     * @return true if is Lollipop or higher, false otherwise
      */
     public static boolean isLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
     /**
-     *
-     * @return true if is Marshmallow, false otherwise
+     * @return true if is Marshmallow or higher, false otherwise
      */
     public static boolean isMarshmallow() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;

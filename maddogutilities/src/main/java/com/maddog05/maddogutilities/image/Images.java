@@ -5,13 +5,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Base64;
+
+import com.maddog05.maddogutilities.android.AndroidVersions;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -298,5 +304,26 @@ public class Images {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] b = stream.toByteArray();
         return Base64.encodeToString(b, Base64.DEFAULT);
+    }
+
+    /**
+     * Get bitmap from vector drawable
+     * @param context Context
+     * @param drawableId Resource id of target vector drawable
+     * @return vector's bitmap
+     */
+    public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
+        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+        if (!AndroidVersions.isLollipop()) {
+            drawable = (DrawableCompat.wrap(drawable)).mutate();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 }
