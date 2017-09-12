@@ -12,7 +12,7 @@ import android.view.Gravity;
  */
 
 /**
- * TextView drawing vertical orientation.
+ * subclass of {@link AppCompatTextView AppCompatTextView} drawing vertical orientation.
  */
 public class VerticalTextView extends AppCompatTextView {
     final boolean topDown;

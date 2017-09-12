@@ -11,6 +11,9 @@ import com.maddog05.maddogutilities.R;
  * Created by andreetorres on 13/05/17.
  */
 
+/**
+ * subclass of {@link AppCompatImageView AppCompatImageView} to create perfect square view
+ */
 public class SquareImageView extends AppCompatImageView {
 
     private boolean useHorizontal;
