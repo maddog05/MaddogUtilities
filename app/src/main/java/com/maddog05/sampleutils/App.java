@@ -1,6 +1,7 @@
 package com.maddog05.sampleutils;
 
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.maddog05.maddogutilities.logger.Logger2;
 
@@ -13,5 +14,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Logger2.get().setEnabled(true);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 }

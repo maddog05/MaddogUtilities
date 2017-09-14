@@ -16,7 +16,7 @@ import com.maddog05.maddogutilities.R;
  */
 public class SquareImageView extends AppCompatImageView {
 
-    private boolean useHorizontal;
+    private boolean useHorizontal = true;
 
     public SquareImageView(Context context) {
         super(context);

@@ -24,6 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="NUMBERS" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_dummy_image_loader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IMAGE LOADER" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

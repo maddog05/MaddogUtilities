@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.maddog05.maddogutilities.android.Permissions;
+import com.maddog05.sampleutils.activity.ImageLoaderActivity;
 import com.maddog05.sampleutils.activity.NumbersActivity;
 import com.maddog05.sampleutils.activity.PhotoActivity;
 
@@ -35,6 +36,16 @@ public class DummyActivity extends AppCompatActivity {
                 openDemoNumbers();
             }
         });
+        findViewById(R.id.btn_dummy_image_loader).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDemoImageLoader();
+            }
+        });
+    }
+
+    private void openDemoImageLoader() {
+        startActivity(new Intent(DummyActivity.this, ImageLoaderActivity.class));
     }
 
     private void openDemoNumbers() {
