@@ -1,27 +1,30 @@
 package com.maddog05.sampleutils.activity;
 
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.maddog05.maddogutilities.callback.Callback;
 import com.maddog05.maddogutilities.image.ImageLoader;
 import com.maddog05.sampleutils.R;
+import com.maddog05.sampleutils.impl.FrescoLoader;
 import com.maddog05.sampleutils.impl.GlideLoader;
 
 public class ImageLoaderActivity extends AppCompatActivity {
-    /*
-    * renzo propone crear un customimageview, que reciba la clase que
-    * implemente el imageloader
-    * y pueda setear sus datos y cargar automatico la imagen
-    * */
+
     private AppCompatImageView photoIv;
     private AppCompatEditText urlEt;
     private ProgressBar loadingPbar;
+    private SimpleDraweeView photoDrawee;
+
+    private boolean isGlideSelected = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class ImageLoaderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image_loader);
         urlEt = (AppCompatEditText) findViewById(R.id.et_url);
         photoIv = (AppCompatImageView) findViewById(R.id.iv_photo_preview);
+        photoDrawee = (SimpleDraweeView) findViewById(R.id.drawee_fresco);
         loadingPbar = (ProgressBar) findViewById(R.id.pbar_loading);
         findViewById(R.id.btn_load).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,15 +44,25 @@ public class ImageLoaderActivity extends AppCompatActivity {
                 }
             }
         });
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rgroup_image_loader);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                isGlideSelected = i == R.id.rb_glide;
+            }
+        });
     }
 
     private void _showImage(String url) {
+        photoIv.setVisibility(isGlideSelected ? View.VISIBLE : View.INVISIBLE);
+        photoDrawee.setVisibility(!isGlideSelected ? View.VISIBLE : View.GONE);
+
         loadingPbar.setVisibility(View.VISIBLE);
-        ImageLoader imageLoader = GlideLoader.create();
+        ImageLoader imageLoader = isGlideSelected ? GlideLoader.create() : FrescoLoader.create();
         imageLoader
                 .with(ImageLoaderActivity.this)
                 .load(url)
-                .target(photoIv)
+                .target(isGlideSelected ? photoIv : photoDrawee)
                 .placeholder(R.drawable.ic_photo)
                 .callback(new Callback<Boolean>() {
                     @Override

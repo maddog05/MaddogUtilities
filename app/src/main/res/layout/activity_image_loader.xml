@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <RadioGroup
+        android:id="@+id/rgroup_image_loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/rb_glide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Glide" />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fresco" />
+    </RadioGroup>
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_load"
         android:layout_width="wrap_content"
@@ -35,7 +56,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btn_load"
-        app:srcCompat="@drawable/ic_photo" />
+        android:layout_below="@+id/rgroup_image_loader"
+        android:visibility="visible" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/drawee_fresco"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_load"
+        android:layout_below="@+id/rgroup_image_loader"
+        android:visibility="invisible" />
 
     <ProgressBar
         android:id="@+id/pbar_loading"
