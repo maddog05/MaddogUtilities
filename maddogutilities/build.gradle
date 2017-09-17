@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'com.maddog05'
     PUBLISH_ARTIFACT_ID = 'maddogutilities'
-    PUBLISH_VERSION = '0.6.0'
+    PUBLISH_VERSION = '0.7.0'
 }
 
 android {
@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 8
-        versionName "0.6.0"
+        versionCode 9
+        versionName "0.7.0"
 
     }
     buildTypes {
