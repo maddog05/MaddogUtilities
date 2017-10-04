@@ -286,6 +286,10 @@ public class Images {
         return Uri.parse(path);
     }
 
+    /** Class to encode bitmap to base64 string
+     * @deprecated use {@link ImageEncoder}
+     */
+    @Deprecated
     public static class EncodeBitmapBase64AsyncTask extends AsyncTask<Void, Void, String> {
         Bitmap _bitmap;
 
@@ -308,7 +312,8 @@ public class Images {
 
     /**
      * Get bitmap from vector drawable
-     * @param context Context
+     *
+     * @param context    Context
      * @param drawableId Resource id of target vector drawable
      * @return vector's bitmap
      */

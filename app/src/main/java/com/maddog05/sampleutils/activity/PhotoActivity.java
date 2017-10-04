@@ -12,6 +12,8 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import com.maddog05.maddogutilities.callback.Callback;
+import com.maddog05.maddogutilities.image.ImageEncoder;
 import com.maddog05.maddogutilities.image.Images;
 import com.maddog05.maddogutilities.logger.Logger2;
 import com.maddog05.sampleutils.R;
@@ -52,13 +54,22 @@ public class PhotoActivity extends AppCompatActivity {
                 _dialog.setCancelable(false);
                 _dialog.setIndeterminate(true);
                 _dialog.show();
-                new Images.EncodeBitmapBase64AsyncTask(bitmap) {
+                ImageEncoder.with(bitmap)
+                        .callback(new Callback<String>() {
+                            @Override
+                            public void done(String encoded) {
+                                _dialog.dismiss();
+                                Logger2.get().d("#Maddog", "encoding result = " + (encoded.isEmpty()))
+                                ;
+                            }
+                        }).encode();
+                /*new Images.EncodeBitmapBase64AsyncTask(bitmap) {
                     @Override
                     protected void onPostExecute(String encoded64) {
                         _dialog.dismiss();
                         Logger2.get().d("#Maddog", "encodingComplete");
                     }
-                }.execute();
+                }.execute();*/
             }
         });
         findViewById(R.id.btn_photo_gallery).setOnClickListener(new View.OnClickListener() {
