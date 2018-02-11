@@ -3,7 +3,7 @@ package com.maddog05.maddogutilities.android;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 
-/**
+/*
  * Created by andreetorres on 10/05/17.
  */
 

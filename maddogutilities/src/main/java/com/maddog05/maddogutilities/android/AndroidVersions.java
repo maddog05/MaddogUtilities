@@ -2,7 +2,7 @@ package com.maddog05.maddogutilities.android;
 
 import android.os.Build;
 
-/**
+/*
  * Created by andree on 04/08/2017.
  */
 

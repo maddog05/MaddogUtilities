@@ -5,7 +5,7 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/**
+/*
  * Created by andreetorres on 1/05/17.
  */
 
@@ -35,7 +35,7 @@ public class Checkers {
      * @param context, Application context.
      * @return true if internet is available, false otherwise.
      */
-    public static boolean isInternetAvailable(Context context) {
+    public static boolean isInternetInWifiOrData(Context context) {
         ConnectivityManager cmc = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cmc.getActiveNetworkInfo();
         return activeNetwork != null &&

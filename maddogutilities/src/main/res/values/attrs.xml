@@ -3,4 +3,8 @@
     <declare-styleable name="SquareImageView">
         <attr name="siv_useDimensionHorizontal" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="VerticalTextView">
+        <attr name="vtv_alignBottomInStart" format="boolean" />
+    </declare-styleable>
 </resources>

@@ -45,6 +45,9 @@
         <activity
             android:name=".activity.ImageLoaderActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BolderDemoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

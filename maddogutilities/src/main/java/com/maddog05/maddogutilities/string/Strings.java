@@ -11,7 +11,7 @@ import android.text.style.StyleSpan;
 import android.util.Patterns;
 import android.webkit.URLUtil;
 
-/**
+/*
  * Created by andree on 27/04/2017.
  */
 
@@ -66,34 +66,6 @@ public class Strings {
     }
 
     /**
-     * Concat two string, first with bold and second with normal
-     *
-     * @param boldText   bold
-     * @param normalText normal
-     * @return CharSequence ready to use in setText(result)
-     */
-    public static CharSequence boldConcatNormalText(String boldText, String normalText) {
-        SpannableString txtSpannable = new SpannableString(boldText);
-        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
-        txtSpannable.setSpan(boldSpan, 0, boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return TextUtils.concat(txtSpannable, normalText);
-    }
-
-    /**
-     * Concat two strings, first with normal and second with bold
-     *
-     * @param normalText normal
-     * @param boldText   bold
-     * @return CharSequence ready to use in setText(result)
-     */
-    public static CharSequence normalConcatBoldText(String normalText, String boldText) {
-        SpannableString txtSpannable = new SpannableString(boldText);
-        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
-        txtSpannable.setSpan(boldSpan, 0, boldText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return TextUtils.concat(normalText, txtSpannable);
-    }
-
-    /**
      * Copy simple text to clipboard
      *
      * @param context     access to context
@@ -104,5 +76,51 @@ public class Strings {
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(labelToUser, textToCopy);
         clipboardManager.setPrimaryClip(clipData);
+    }
+
+    /**
+     * Create CharSequence with normal, bold and italic text styles
+     */
+    public static class CharSequenceStyle {
+        private CharSequence response;
+
+        public CharSequenceStyle() {
+            response = "";
+        }
+
+        public CharSequenceStyle addNormal(String text) {
+            add(text, Typeface.NORMAL);
+            return this;
+        }
+
+        public CharSequenceStyle addBold(String text) {
+            add(text, Typeface.BOLD);
+            return this;
+        }
+
+        public CharSequenceStyle addItalic(String text) {
+            add(text, Typeface.ITALIC);
+            return this;
+        }
+
+        public CharSequenceStyle addBoldItalic(String text) {
+            add(text, Typeface.BOLD_ITALIC);
+            return this;
+        }
+
+        private void add(String text, int typeface) {
+            SpannableString spannableString = new SpannableString(text);
+            StyleSpan styleSpan = new StyleSpan(typeface);
+            spannableString.setSpan(styleSpan, 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            response = TextUtils.concat(response, spannableString);
+        }
+
+        public void clear() {
+            response = "";
+        }
+
+        public CharSequence build() {
+            return response;
+        }
     }
 }

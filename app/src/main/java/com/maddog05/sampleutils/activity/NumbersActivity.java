@@ -18,7 +18,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        numberEt = (AppCompatEditText) findViewById(R.id.et_numbers_input);
+        numberEt = findViewById(R.id.et_numbers_input);
 
         findViewById(R.id.btn_one).setOnClickListener(new View.OnClickListener() {
             @Override

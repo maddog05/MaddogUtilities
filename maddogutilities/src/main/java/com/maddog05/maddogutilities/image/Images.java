@@ -2,6 +2,7 @@ package com.maddog05.maddogutilities.image;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,30 +10,51 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.util.Base64;
 
 import com.maddog05.maddogutilities.android.AndroidVersions;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
+/*
  * Created by andreetorres on 1/05/17.
  */
 
 public class Images {
 
+    public static final String PARAMETER_CAMERA_OUTPUT = MediaStore.EXTRA_OUTPUT;
+
     public static class InputPhoto {
         public String path;
         public Uri uri;
+    }
+
+    /**
+     * Create an intent for select photo in gallery
+     *
+     * @param titleSelectApp title for select source
+     * @return An intent for startActivityForResult
+     */
+    public static Intent getIntentGallery(String titleSelectApp) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        return Intent.createChooser(intent, titleSelectApp);
+    }
+
+    /**
+     * Create an intent for take a picture from camera
+     *
+     * @param packageManager param to check if intent can be resolved
+     * @return An intent for startActivityForResult
+     */
+    public static Intent getIntentCamera(PackageManager packageManager) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        return intent.resolveActivity(packageManager) != null ? intent : null;
     }
 
     /**
@@ -111,74 +133,24 @@ public class Images {
     /**
      * Get OutputPhoto, ONLY FOR GALLERY.
      *
-     * @param context,   Context to initialize temp file.
-     * @param data,      Data recovered by activity.
      * @param photoPath, Path to photo temp.
      */
-    public static OutputPhoto getOutputPhotoCamera(Context context, Intent data, String photoPath) {
+    public static OutputPhoto getOutputPhotoCamera(String photoPath) {
         OutputPhoto pair = new OutputPhoto();
-        if (data != null) {
-            Uri takenPhotoUri = Uri.parse(photoPath);
-            try {
-                Bitmap rotated;
-                rotated = getBitmap(context, takenPhotoUri);
-                if (rotated != null) {
-                    pair.bitmap = rotated;
-                }
-            } catch (Exception e) {
-                Bitmap takenImage = BitmapFactory.decodeFile(takenPhotoUri.getPath());
-                try {
-                    pair.bitmap = getBitmap(context, getImageUri(context, takenImage));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } else {/*SAMSUNG*/
-            try {
-                pair.bitmap = getBitmap(
-                        context, getImageUri(
-                                context, BitmapFactory.decodeFile(photoPath)));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+        Uri takenPhotoUri = Uri.parse(photoPath);
+        pair.bitmap = BitmapFactory.decodeFile(takenPhotoUri.getPath());
         return pair;
     }
 
     /**
      * Get OutputPhoto compressed, ONLY FOR GALLERY.
      *
-     * @param context,   Context to initialize temp file.
-     * @param data,      Data recovered by activity.
      * @param photoPath, Path to photo temp.
      */
-    public static OutputPhoto getOutputPhotoCameraCompressed(Context context, Intent data, String photoPath, int maxDimensionPixels) {
+    public static OutputPhoto getOutputPhotoCameraCompressed(String photoPath, int maxDimensionPixels) {
         OutputPhoto pair = new OutputPhoto();
-        if (data != null) {
-            Uri takenPhotoUri = Uri.parse(photoPath);
-            try {
-                Bitmap rotated;
-                rotated = getBitmap(context, takenPhotoUri);
-                if (rotated != null) {
-                    pair.bitmap = rotated;
-                }
-            } catch (Exception e) {
-                Bitmap takenImage = BitmapFactory.decodeFile(takenPhotoUri.getPath());
-                try {
-                    pair.bitmap = getBitmapCompressed(context, getImageUri(context, takenImage), maxDimensionPixels);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } else {/*SAMSUNG*/
-            try {
-                pair.bitmap = getBitmap(
-                        context, getImageUri(
-                                context, BitmapFactory.decodeFile(photoPath)));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+        Uri takenPhotoUri = Uri.parse(photoPath);
+        pair.bitmap = getBitmapCompressed(BitmapFactory.decodeFile(takenPhotoUri.getPath()), maxDimensionPixels);
         return pair;
     }
 
@@ -196,6 +168,11 @@ public class Images {
         if (is != null)
             is.close();
         return srcBitmap;
+    }
+
+    public static Bitmap getBitmapCompressed(Bitmap originalBitmap, int maxDimensionPixels) {
+        float factor = maxDimensionPixels / (float) originalBitmap.getWidth();
+        return Bitmap.createScaledBitmap(originalBitmap, maxDimensionPixels, (int) (originalBitmap.getHeight() * factor), true);
     }
 
     private static Bitmap getBitmapCompressed(Context context, Uri photoUri, int maxDimensionPixels) {
@@ -277,37 +254,6 @@ public class Images {
             return picturePath;
         } else
             return null;
-    }
-
-    private static Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-    /** Class to encode bitmap to base64 string
-     * @deprecated use {@link ImageEncoder}
-     */
-    @Deprecated
-    public static class EncodeBitmapBase64AsyncTask extends AsyncTask<Void, Void, String> {
-        Bitmap _bitmap;
-
-        public EncodeBitmapBase64AsyncTask(Bitmap bitmap) {
-            this._bitmap = bitmap;
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            return Images.encodeImageBase64(_bitmap);
-        }
-    }
-
-    private static String encodeImageBase64(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] b = stream.toByteArray();
-        return Base64.encodeToString(b, Base64.DEFAULT);
     }
 
     /**

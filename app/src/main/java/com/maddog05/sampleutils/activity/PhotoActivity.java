@@ -3,7 +3,6 @@ package com.maddog05.sampleutils.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -22,7 +21,6 @@ public class PhotoActivity extends AppCompatActivity {
 
     public static final int RESULT_LOAD_IMAGE = 102;
     public static final int RESULT_TAKE_PICTURE = 103;
-    public static final int MAX_DIMENSION_PIXELS = 512;
 
     private AppCompatImageView photoIv;
     private AppCompatButton encodeBtn;
@@ -36,7 +34,7 @@ public class PhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
-        AppCompatCheckBox compressionCb = (AppCompatCheckBox) findViewById(R.id.cb_photo_compression);
+        AppCompatCheckBox compressionCb = findViewById(R.id.cb_photo_compression);
         compressionCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -44,8 +42,8 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });
 
-        photoIv = (AppCompatImageView) findViewById(R.id.iv_photo_preview);
-        encodeBtn = (AppCompatButton) findViewById(R.id.btn_photo_encode);
+        photoIv = findViewById(R.id.iv_photo_preview);
+        encodeBtn = findViewById(R.id.btn_photo_encode);
         encodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,31 +61,23 @@ public class PhotoActivity extends AppCompatActivity {
                                 ;
                             }
                         }).encode();
-                /*new Images.EncodeBitmapBase64AsyncTask(bitmap) {
-                    @Override
-                    protected void onPostExecute(String encoded64) {
-                        _dialog.dismiss();
-                        Logger2.get().d("#Maddog", "encodingComplete");
-                    }
-                }.execute();*/
             }
         });
         findViewById(R.id.btn_photo_gallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                startActivityForResult(Images.getIntentGallery("Select app"), RESULT_LOAD_IMAGE);
             }
         });
         findViewById(R.id.btn_photo_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+                Intent cameraIntent = Images.getIntentCamera(getPackageManager());
+                if (cameraIntent != null) {
                     Images.InputPhoto pair = Images.getInputPhotoCamera(PhotoActivity.this, "com.maddog05.fileprovider");
                     if (pair.uri != null) {
                         pathPhoto = pair.path;
-                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pair.uri);
+                        cameraIntent.putExtra(Images.PARAMETER_CAMERA_OUTPUT, pair.uri);
                         startActivityForResult(cameraIntent, RESULT_TAKE_PICTURE);
                     } else {
                         Logger2.get().e("#Andree", "error in create path for image");
@@ -110,7 +100,7 @@ public class PhotoActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == RESULT_TAKE_PICTURE && resultCode == RESULT_OK) {
-            Images.OutputPhoto pair = Images.getOutputPhotoCamera(PhotoActivity.this, data, pathPhoto);
+            Images.OutputPhoto pair = Images.getOutputPhotoCamera(pathPhoto);
             if (pair.bitmap != null) {
                 loadBitmap(pair.bitmap);
                 encodeBtn.setEnabled(true);

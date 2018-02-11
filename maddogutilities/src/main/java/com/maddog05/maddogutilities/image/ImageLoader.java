@@ -19,7 +19,7 @@ public interface ImageLoader {
      * Initialize implementation
      *
      * @param context access to context
-     * @return {@link ImageLoader ImageLoader} instance of you implementation
+     * @return {@link ImageLoader ImageLoader} instance of your implementation
      */
     ImageLoader with(Context context);
 
@@ -27,7 +27,7 @@ public interface ImageLoader {
      * Image to use until final image is loaded
      *
      * @param resDrawable drawable resource
-     * @return {@link ImageLoader ImageLoader} instance of you implementation
+     * @return {@link ImageLoader ImageLoader} instance of your implementation
      */
     ImageLoader placeholder(@DrawableRes int resDrawable);
 
@@ -35,21 +35,21 @@ public interface ImageLoader {
      * Callback to check if process to load image is completed or not
      *
      * @param callback method done in {@link Callback Callback} class return true if loading is completed, false otherwise
-     * @return {@link ImageLoader ImageLoader} instance of you implementation
+     * @return {@link ImageLoader ImageLoader} instance of your implementation
      */
     ImageLoader callback(Callback<Boolean> callback);
 
     /**
      * Url or path to load
      * @param path url or path
-     * @return {@link ImageLoader ImageLoader} instance of you implementation
+     * @return {@link ImageLoader ImageLoader} instance of your implementation
      */
     ImageLoader load(String path);
 
     /**
      * ImageView target
      * @param imageView {@link ImageView ImageView} destination
-     * @return {@link ImageLoader ImageLoader} instance of you implementation
+     * @return {@link ImageLoader ImageLoader} instance of your implementation
      */
     ImageLoader target(ImageView imageView);
 

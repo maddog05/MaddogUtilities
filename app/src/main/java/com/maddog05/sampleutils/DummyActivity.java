@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.maddog05.maddogutilities.android.Permissions;
+import com.maddog05.sampleutils.activity.BolderDemoActivity;
 import com.maddog05.sampleutils.activity.ImageLoaderActivity;
 import com.maddog05.sampleutils.activity.NumbersActivity;
 import com.maddog05.sampleutils.activity.PhotoActivity;
@@ -42,6 +43,16 @@ public class DummyActivity extends AppCompatActivity {
                 openDemoImageLoader();
             }
         });
+        findViewById(R.id.btn_dummy_bolder).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDemoBolder();
+            }
+        });
+    }
+
+    private void openDemoBolder() {
+        startActivity(new Intent(DummyActivity.this, BolderDemoActivity.class));
     }
 
     private void openDemoImageLoader() {

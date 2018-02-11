@@ -30,10 +30,10 @@ public class ImageLoaderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_loader);
-        urlEt = (AppCompatEditText) findViewById(R.id.et_url);
-        photoIv = (AppCompatImageView) findViewById(R.id.iv_photo_preview);
-        photoDrawee = (SimpleDraweeView) findViewById(R.id.drawee_fresco);
-        loadingPbar = (ProgressBar) findViewById(R.id.pbar_loading);
+        urlEt = findViewById(R.id.et_url);
+        photoIv = findViewById(R.id.iv_photo_preview);
+        photoDrawee = findViewById(R.id.drawee_fresco);
+        loadingPbar = findViewById(R.id.pbar_loading);
         findViewById(R.id.btn_load).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

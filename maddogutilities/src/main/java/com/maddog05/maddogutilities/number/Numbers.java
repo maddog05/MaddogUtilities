@@ -3,7 +3,7 @@ package com.maddog05.maddogutilities.number;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-/**
+/*
  * Created by andreetorres on 1/05/17.
  */
 

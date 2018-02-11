@@ -7,7 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*
  * Created by andreetorres on 1/05/17.
  */
 

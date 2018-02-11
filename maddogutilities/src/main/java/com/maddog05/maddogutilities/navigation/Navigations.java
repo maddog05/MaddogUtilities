@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-/**
+/*
  * Created by andreetorres on 1/05/17.
  */
 
