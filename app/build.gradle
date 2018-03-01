@@ -27,7 +27,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':maddogutilities')
-    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.1.0'
     compile('com.github.bumptech.glide:glide:4.1.1') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
