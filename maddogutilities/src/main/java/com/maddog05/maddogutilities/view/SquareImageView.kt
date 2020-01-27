@@ -8,11 +8,19 @@ import com.maddog05.maddogutilities.R
 /*
  * Created by andreetorres on 10/02/18.
  */
-class SquareImageView(context: Context, attrs: AttributeSet, defStyleAttr: Int) : AppCompatImageView(context, attrs, defStyleAttr) {
+class SquareImageView : AppCompatImageView {
 
     private var useHorizontal = true
 
-    init {
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.SquareImageView)
+        useDimensionHorizontal(attributes.getBoolean(R.styleable.SquareImageView_siv_useDimensionHorizontal, true))
+        attributes.recycle()
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.SquareImageView)
         useDimensionHorizontal(attributes.getBoolean(R.styleable.SquareImageView_siv_useDimensionHorizontal, true))
         attributes.recycle()

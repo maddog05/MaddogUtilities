@@ -10,10 +10,18 @@ import com.maddog05.maddogutilities.R
 /*
  * Created by andreetorres on 10/02/18.
  */
-class VerticalTextView(context: Context, attrs: AttributeSet, defStyleAttr: Int) : AppCompatTextView(context, attrs, defStyleAttr) {
+class VerticalTextView : AppCompatTextView {
     private var topDown = false
 
-    init {
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.VerticalTextView)
+        topDown = attributes.getBoolean(R.styleable.VerticalTextView_vtv_alignBottomInStart, true)
+        attributes.recycle()
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.VerticalTextView)
         topDown = attributes.getBoolean(R.styleable.VerticalTextView_vtv_alignBottomInStart, true)
         attributes.recycle()
