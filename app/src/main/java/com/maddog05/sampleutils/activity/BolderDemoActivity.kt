@@ -1,10 +1,10 @@
 package com.maddog05.sampleutils.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.AppCompatButton
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatTextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import com.maddog05.maddogutilities.string.Strings
 import com.maddog05.sampleutils.R
 

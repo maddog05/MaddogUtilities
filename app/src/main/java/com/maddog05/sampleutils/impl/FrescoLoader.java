@@ -2,8 +2,8 @@ package com.maddog05.sampleutils.impl;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.DrawableRes;
+import androidx.core.content.ContextCompat;
 import android.widget.ImageView;
 
 import com.facebook.drawee.drawable.ProgressBarDrawable;

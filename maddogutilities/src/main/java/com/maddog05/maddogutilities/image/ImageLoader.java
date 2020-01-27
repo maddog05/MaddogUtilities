@@ -5,7 +5,7 @@ package com.maddog05.maddogutilities.image;
  */
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.maddog05.maddogutilities.callback.Callback;

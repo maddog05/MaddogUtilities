@@ -1,7 +1,7 @@
 package com.maddog05.maddogutilities.android;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /*
  * Created by andreetorres on 10/05/17.

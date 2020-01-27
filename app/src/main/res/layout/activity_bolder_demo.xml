@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_bolder_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="8dp"
         android:layout_height="8dp" />
 
@@ -21,21 +21,21 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_bolder_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="NORMAL" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_bolder_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="BOLD" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_bolder_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,11 +43,11 @@
             android:text="CLEAR" />
     </LinearLayout>
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="8dp"
         android:layout_height="8dp" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_bolder_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -14,20 +14,20 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatRadioButton
+        <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/rb_glide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="Glide" />
 
-        <android.support.v7.widget.AppCompatRadioButton
+        <androidx.appcompat.widget.AppCompatRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fresco" />
     </RadioGroup>
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:text="LOAD" />
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:inputType="text"
         android:maxLines="1" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_photo_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

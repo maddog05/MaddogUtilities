@@ -1,10 +1,10 @@
 package com.maddog05.sampleutils.activity;
 
-import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.IdRes;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;

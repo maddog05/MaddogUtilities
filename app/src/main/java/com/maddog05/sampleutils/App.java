@@ -1,7 +1,7 @@
 package com.maddog05.sampleutils;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.maddog05.maddogutilities.logger.Logger2;
