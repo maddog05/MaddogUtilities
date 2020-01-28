@@ -10,7 +10,6 @@ repositories {
 ```
 build.gradle MODULE
 ```Java
-compile 'com.github.maddog05:MaddogUtilities:1.0.0'
-and
-compile 'com.android.support:appcompat-v7:27.0.2'
+implementation 'com.github.maddog05:MaddogUtilities:2.0.0'
+and add androidx implementation
 ```

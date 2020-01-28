@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -22,20 +23,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation project(':maddogutilities')
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation('com.github.bumptech.glide:glide:4.1.1') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    implementation ('com.facebook.fresco:fresco:1.5.0'){
-        exclude group: 'com.android.support', module: 'support-core-utils'
-    }
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
